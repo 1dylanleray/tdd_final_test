@@ -1,5 +1,5 @@
 {
-  "compilerOptions": {
+ "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "node",
@@ -7,7 +7,9 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "lib": ["esnext", "dom"]
+    
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]

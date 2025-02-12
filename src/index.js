@@ -13,3 +13,5 @@ function chessboard(n) {
     return board;
 }
 console.log(chessboard(4));
+var board = chessboard(4);
+board.forEach(function (row) { return console.log(row); });
