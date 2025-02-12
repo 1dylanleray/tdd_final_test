@@ -50,4 +50,17 @@ describe("display chessboard", () => {
       }
     }
   });
+  it("should not place two queens on the same row", () => {
+    const size = 5;
+    const board = chessboard(size);
+    for (let row = 0; row < size; row++) {
+      let queenCountInRow = 0;
+      for (let col = 0; col < size; col++) {
+        if (board[row][col] === "#") {
+          queenCountInRow++;
+        }
+      }
+      expect(queenCountInRow).toBeLessThanOrEqual(1);
+    }
+  });
 });
