@@ -1,7 +1,6 @@
 export function chessboard(n: number): string[] {
   const board: string[] = [];
 
-  // Initialize the board with empty spaces
   for (let i = 0; i < n; i++) {
     let row = "";
     for (let j = 0; j < n; j++) {
@@ -11,9 +10,16 @@ export function chessboard(n: number): string[] {
   }
 
   function isValid(board: string[], row: number, col: number): boolean {
-    // Check the column
     for (let i = 0; i < row; i++) {
       if (board[i][col] === "#") return false;
+    }
+
+    for (let i = row, j = col; i >= 0 && j >= 0; i--, j--) {
+      if (board[i][j] === "#") return false;
+    }
+
+    for (let i = row, j = col; i >= 0 && j < n; i--, j++) {
+      if (board[i][j] === "#") return false;
     }
 
     return true;
@@ -43,6 +49,6 @@ export function chessboard(n: number): string[] {
   return board;
 }
 
-console.log(chessboard(4)); // Example usage
+console.log(chessboard(4));
 const board = chessboard(4);
 board.forEach((row) => console.log(row));
