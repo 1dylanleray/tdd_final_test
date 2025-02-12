@@ -50,6 +50,7 @@ describe("display chessboard", () => {
       }
     }
   });
+
   it("should not place two queens on the same row", () => {
     const size = 5;
     const board = chessboard(size);
@@ -62,5 +63,15 @@ describe("display chessboard", () => {
       }
       expect(queenCountInRow).toBeLessThanOrEqual(1);
     }
+  });
+
+  it("should handle no queens on the board", () => {
+    const solutions = chessboard(0);
+    expect(solutions).toEqual([]);
+  });
+
+  it("should return all distinct solutions for a 4x4 board", () => {
+    const solutions = chessboard(4);
+    expect(solutions.length).toBeGreaterThan(1);
   });
 });
