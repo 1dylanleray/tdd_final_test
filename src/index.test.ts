@@ -17,4 +17,18 @@ describe("display chessboard", () => {
     );
     expect(queenCount).toBe(4);
   });
+
+  it("should not place two queens in the same column", () => {
+    const size = 5;
+    const board = chessboard(size);
+    for (let col = 0; col < size; col++) {
+      let queenCountInCol = 0;
+      for (let row = 0; row < size; row++) {
+        if (board[row][col] === "#") {
+          queenCountInCol++;
+        }
+      }
+      expect(queenCountInCol).toBeLessThanOrEqual(1);
+    }
+  });
 });

@@ -1,14 +1,7 @@
 export function chessboard(n: number): string[] {
   const board: string[] = [];
-  const queenPositions: boolean[][] = [];
 
-  for (let i = 0; i < n; i++) {
-    const row: boolean[] = [];
-    for (let j = 0; j < n; j++) {
-      row.push(false);
-    }
-    queenPositions.push(row);
-  }
+  // Initialize the board with empty spaces
   for (let i = 0; i < n; i++) {
     let row = "";
     for (let j = 0; j < n; j++) {
@@ -16,21 +9,40 @@ export function chessboard(n: number): string[] {
     }
     board.push(row);
   }
-  let queensPlaced = 0;
-  while (queensPlaced < n) {
-    const row = Math.floor(Math.random() * n);
-    const col = Math.floor(Math.random() * n);
-    if (!queenPositions[row][col]) {
-      queenPositions[row][col] = true;
-      board[row] =
-        board[row].substring(0, col) + "#" + board[row].substring(col + 1);
-      queensPlaced++;
+
+  function isValid(board: string[], row: number, col: number): boolean {
+    // Check the column
+    for (let i = 0; i < row; i++) {
+      if (board[i][col] === "#") return false;
     }
+
+    return true;
   }
 
+  function solve(row: number): boolean {
+    if (row === n) {
+      return true;
+    }
+
+    for (let col = 0; col < n; col++) {
+      if (isValid(board, row, col)) {
+        board[row] =
+          board[row].substring(0, col) + "#" + board[row].substring(col + 1);
+        if (solve(row + 1)) {
+          return true;
+        }
+        board[row] =
+          board[row].substring(0, col) + "O" + board[row].substring(col + 1);
+      }
+    }
+
+    return false;
+  }
+
+  solve(0);
   return board;
 }
 
-console.log(chessboard(4));
+console.log(chessboard(4)); // Example usage
 const board = chessboard(4);
 board.forEach((row) => console.log(row));

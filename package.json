@@ -1,7 +1,7 @@
 {
 
   "scripts": {
-    "start": "tsc src/index.ts && node src/index.js --include=dev"
+    "start": "tsc src/index.ts && node src/index.js"
 
   },
   "devDependencies": {
